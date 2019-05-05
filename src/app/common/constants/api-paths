@@ -1,0 +1,7 @@
+
+export class ApiConstants {
+
+  static BASE_PATH = 'http://localhost:8080/api/';
+  static REPORT_PATH = 'subnet';
+
+}

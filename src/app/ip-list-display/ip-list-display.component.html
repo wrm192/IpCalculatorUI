@@ -1,3 +1,47 @@
-<p>
-  ip-list-display works!
-</p>
+<div *ngIf="networkInfo$ | async as report">
+
+  <!--Make this card a form, and this is where the api with update the tables, automatically-->
+  <div class="header-info">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Starting IpAddress </mat-card-title>
+        <mat-card-subtitle>{{report.startingIp + '/' + report.suffix}}</mat-card-subtitle>
+
+        <mat-card-content>
+          <p><b>Class Type:</b> {{report.classType}}</p>
+          <p><b>Max Hosts:</b> {{report.maxHosts}}</p>
+          <p><b>Max Subnets:</b> {{report.numOfSubnets}}</p>
+        </mat-card-content>
+
+      </mat-card-header>
+
+    </mat-card>
+
+
+
+  </div>
+    <table mat-table [dataSource]="report.ipAddressInfo">
+      <ng-container matColumnDef="wireAddress">
+        <th mat-header-cell *matHeaderCellDef> Wire Address </th>
+        <td mat-cell *matCellDef="let r "> {{r.wireAddress}} </td>
+      </ng-container>
+      <ng-container matColumnDef="firstHost">
+        <th mat-header-cell *matHeaderCellDef> First Address </th>
+        <td mat-cell *matCellDef="let r "> {{r.firstHost}} </td>
+      </ng-container>
+      <ng-container matColumnDef="lastHost">
+        <th mat-header-cell *matHeaderCellDef> Wire Address </th>
+        <td mat-cell *matCellDef="let r "> {{r.lastHost}} </td>
+      </ng-container>
+      <ng-container matColumnDef="broadcastAddress">
+        <th mat-header-cell *matHeaderCellDef> Broadcast Address </th>
+        <td mat-cell *matCellDef="let r "> {{r.broadcastAddress}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  <!-- add spinner while loading-->
+
+</div>
