@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CalcultedIpAddresses} from '../common/models/ipaddress.model';
 import {ApiService} from '../common/services/api-service';
 import {Observable} from 'rxjs';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-ip-list-display',
@@ -10,15 +11,25 @@ import {Observable} from 'rxjs';
 })
 export class IpListDisplayComponent implements OnInit {
 
-  // TODO 1- Make a form for input
-  // 2 - Parameterize the api to actually send properly
+  // Docker --
   // 3- Pagination on the backend
   // 4- Add colour to anything, super bland
-  displayedColumns: string[] = ['wireAddress', 'firstHost', 'lastHost', 'broadcastAddress'];
-  networkInfo$: Observable<CalcultedIpAddresses>;
+  // 5- Nightmode??
+  // home page?
 
-  constructor(private apiService: ApiService) {
-    this.networkInfo$ = apiService.get();
+  displayedColumns: string[] = ['seq', 'wireAddress', 'firstHost', 'lastHost', 'broadcastAddress'];
+  networkInfo$: Observable<CalcultedIpAddresses>;
+  form: FormGroup;
+
+  constructor(private apiService: ApiService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      ipAddress: new FormControl('', [Validators.minLength(7), Validators.maxLength(15)]),
+      suffix: new FormControl('', [Validators.required] )
+    });
+  }
+
+  getNetworkData () {
+    this.networkInfo$ = this.apiService.get(this.form.controls['ipAddress'].value, this.form.controls['suffix'].value);
   }
 
   ngOnInit() {

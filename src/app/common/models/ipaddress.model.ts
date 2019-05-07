@@ -8,6 +8,7 @@ export interface CalcultedIpAddresses {
 }
 
 export interface  IpAddress {
+  seq: number;
   wireAddress: string;
   firstHost: string;
   lastHost: string;

@@ -1,13 +1,22 @@
-.header-info {
 
-
-}
 .example-card {
-  width: 30%;
+  width: 100%;
 }
 
+.header-info {
+  width: 50%;
+}
 
 
 table {
   width: 100%;
+  background-color: bisque;
+}
+
+.input-area {
+  width: 50%;
+}
+
+.test {
+  background-color: hotpink;
 }
