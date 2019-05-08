@@ -38,6 +38,7 @@
         </mat-card>
       </div>
     </div>
+
     <mat-card>
       <table mat-table [dataSource]="report.ipAddressInfo">
         <ng-container matColumnDef="seq">
@@ -47,19 +48,19 @@
         </ng-container>
         <ng-container matColumnDef="wireAddress">
           <th mat-header-cell *matHeaderCellDef> Wire Address</th>
-          <td mat-cell *matCellDef="let r "> {{r.wireAddress}} </td>
+          <td mat-cell *matCellDef="let r "> {{r.wireAddress | logPipe}} </td>
         </ng-container>
         <ng-container matColumnDef="firstHost">
-          <th mat-header-cell *matHeaderCellDef> First Address</th>
+          <th mat-header-cell *matHeaderCellDef> First Host</th>
           <td mat-cell *matCellDef="let r "> {{r.firstHost}} </td>
         </ng-container>
         <ng-container matColumnDef="lastHost">
-          <th mat-header-cell *matHeaderCellDef> Wire Address</th>
+          <th mat-header-cell *matHeaderCellDef> Last Host</th>
           <td mat-cell *matCellDef="let r "> {{r.lastHost}} </td>
         </ng-container>
         <ng-container matColumnDef="broadcastAddress">
           <th mat-header-cell *matHeaderCellDef> Broadcast Address</th>
-          <td mat-cell *matCellDef="let r "> {{r.broadcastAddress}} </td>
+          <td mat-cell *matCellDef="let r "> {{ r.broadcastAddress}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -71,3 +72,4 @@
 
   </div>
 </div>
+

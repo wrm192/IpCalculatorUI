@@ -1,0 +1,6 @@
+mat-toolbar-row {
+  width: 100%;
+  display: flex;
+  background-color: red;
+  text-align: center;
+}

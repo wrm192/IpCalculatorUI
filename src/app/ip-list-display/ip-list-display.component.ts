@@ -11,11 +11,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class IpListDisplayComponent implements OnInit {
 
-  // Docker --
-  // 3- Pagination on the backend
-  // 4- Add colour to anything, super bland
-  // 5- Nightmode??
-  // home page?
 
   displayedColumns: string[] = ['seq', 'wireAddress', 'firstHost', 'lastHost', 'broadcastAddress'];
   networkInfo$: Observable<CalcultedIpAddresses>;
@@ -24,11 +19,17 @@ export class IpListDisplayComponent implements OnInit {
   constructor(private apiService: ApiService, private fb: FormBuilder) {
     this.form = this.fb.group({
       ipAddress: new FormControl('', [Validators.minLength(7), Validators.maxLength(15)]),
-      suffix: new FormControl('', [Validators.required] )
+      suffix: new FormControl('', [Validators.required])
     });
   }
 
-  getNetworkData () {
+  getNetworkData() {
+    let ipAddress: string;
+
+    ipAddress = this.form.controls['ipAddress'].value;
+    console.log(ipAddress);
+
+
     this.networkInfo$ = this.apiService.get(this.form.controls['ipAddress'].value, this.form.controls['suffix'].value);
   }
 
