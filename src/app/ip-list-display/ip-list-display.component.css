@@ -1,22 +1,5 @@
-
-.example-card {
-  width: 100%;
-}
-
-.header-info {
-  width: 50%;
+mat-card {
+  border-radius: 1px !important;
 }
 
 
-table {
-  width: 100%;
-  background-color: bisque;
-}
-
-.input-area {
-  width: 50%;
-}
-
-.test {
-  background-color: hotpink;
-}

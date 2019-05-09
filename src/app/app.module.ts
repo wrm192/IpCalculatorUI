@@ -5,7 +5,7 @@ import { IpListDisplayComponent } from './ip-list-display/ip-list-display.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-import {MatInputModule, MatMenuModule, MatTableModule, MatToolbarModule} from '@angular/material';
+import {MatInputModule, MatMenuModule, MatProgressSpinnerModule, MatTableModule, MatToolbarModule} from '@angular/material';
 import { MatCardModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -15,6 +15,9 @@ import {ROUTES} from './app.routes';
 import { MenuComponent } from './menu/menu.component';
 import {LogPipe} from './common/pipe/log.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { FactoidComponent } from './factoid/factoid.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HomePageComponent,
     MenuComponent,
     LogPipe,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AboutMeComponent,
+    FactoidComponent
   ],
   imports: [
     HttpClientModule,
@@ -37,7 +42,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatMenuModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FlexLayoutModule,
+    MatProgressSpinnerModule,
   ],
   providers: [LogPipe],
   bootstrap: [AppComponent]

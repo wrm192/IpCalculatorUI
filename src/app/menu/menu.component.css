@@ -1,6 +1,18 @@
-mat-toolbar-row {
-  width: 100%;
-  display: flex;
-  background-color: red;
-  text-align: center;
+
+.as-text {
+
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+
 }
+
+
+.fun {
+  display: flex;
+  text-align: center;
+  flex: 1 1;
+}
+
+

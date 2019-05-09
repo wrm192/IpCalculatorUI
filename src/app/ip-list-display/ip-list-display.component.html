@@ -1,75 +1,80 @@
-<div class="test">
-  <div>
-    <mat-card class="input-area">
-      <mat-card-title>Enter Ip Info</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="form">
-          <div>
-            <mat-form-field>
-              <mat-label>Ip Address:</mat-label>
-              <input matInput type="text" formControlName="ipAddress">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field>
-              <mat-label> Suffix (Subnet Value)</mat-label>
-              <input matInput type="text" formControlName="suffix">
-            </mat-form-field>
-          </div>
-          <button mat-button (click)="getNetworkData()" class="material-icons">rowing</button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div *ngIf="networkInfo$ | async as report">
-    <div><!--Make this card a form, and this is where the api with update the tables, automatically-->
-      <div class="header-info">
-        <mat-card class="example-card">
-          <mat-card-header>
-            <mat-card-title>Starting IpAddress</mat-card-title>
-            <mat-card-subtitle>{{report.startingIp + '/' + report.suffix}}</mat-card-subtitle>
-            <mat-card-content>
-              <p><b>Class Type:</b> {{report.classType}}</p>
-              <p><b>Max Hosts:</b> {{report.maxHosts}}</p>
-              <p><b>Max Subnets:</b> {{report.numOfSubnets}}</p>
-            </mat-card-content>
-          </mat-card-header>
-        </mat-card>
-      </div>
-    </div>
-
-    <mat-card>
-      <table mat-table [dataSource]="report.ipAddressInfo">
-        <ng-container matColumnDef="seq">
-          <th mat-header-cell *matHeaderCellDef>Sequence Number</th>
-          <td mat-cell *matCellDef="let r"> {{r.seq + 1}} </td>
-
-        </ng-container>
-        <ng-container matColumnDef="wireAddress">
-          <th mat-header-cell *matHeaderCellDef> Wire Address</th>
-          <td mat-cell *matCellDef="let r "> {{r.wireAddress | logPipe}} </td>
-        </ng-container>
-        <ng-container matColumnDef="firstHost">
-          <th mat-header-cell *matHeaderCellDef> First Host</th>
-          <td mat-cell *matCellDef="let r "> {{r.firstHost}} </td>
-        </ng-container>
-        <ng-container matColumnDef="lastHost">
-          <th mat-header-cell *matHeaderCellDef> Last Host</th>
-          <td mat-cell *matCellDef="let r "> {{r.lastHost}} </td>
-        </ng-container>
-        <ng-container matColumnDef="broadcastAddress">
-          <th mat-header-cell *matHeaderCellDef> Broadcast Address</th>
-          <td mat-cell *matCellDef="let r "> {{ r.broadcastAddress}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </mat-card>
-
-    <!-- add spinner while loading-->
-
-  </div>
+<div fxLayout="row" fxLayoutGap="20px">
+  <mat-card>
+    <mat-card-title>Enter Ip Info</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div>
+          <mat-form-field>
+            <mat-label>Ip Address:</mat-label>
+            <input matInput type="text" formControlName="ipAddress">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label> Suffix (Subnet Value)</mat-label>
+            <input matInput type="text" formControlName="suffix">
+          </mat-form-field>
+        </div>
+        <button mat-button (click)="getNetworkData()" class="material-icons">rowing</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
+
+
+<ng-container *ngIf="(networkInfo$ | async   ) as report; else loading">
+  <div><!--Make this card a form, and this is where the api with update the tables, automatically-->
+    <div>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Starting IpAddress</mat-card-title>
+          <mat-card-subtitle>{{report.startingIp + '/' + report.suffix}}</mat-card-subtitle>
+          <mat-card-content>
+            <p><b>Class Type:</b> {{report.classType}}</p>
+            <p><b>Max Hosts:</b> {{report.maxHosts}}</p>
+            <p><b>Max Subnets:</b> {{report.numOfSubnets}}</p>
+          </mat-card-content>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-card>
+    <table mat-table [dataSource]="report.ipAddressInfo">
+      <ng-container matColumnDef="seq">
+        <th mat-header-cell *matHeaderCellDef>Sequence Number</th>
+        <td mat-cell *matCellDef="let r"> {{r.seq + 1}} </td>
+
+      </ng-container>
+      <ng-container matColumnDef="wireAddress">
+        <th mat-header-cell *matHeaderCellDef> Wire Address</th>
+        <td mat-cell *matCellDef="let r "> {{r.wireAddress | logPipe}} </td>
+      </ng-container>
+      <ng-container matColumnDef="firstHost">
+        <th mat-header-cell *matHeaderCellDef> First Host</th>
+        <td mat-cell *matCellDef="let r "> {{r.firstHost}} </td>
+      </ng-container>
+      <ng-container matColumnDef="lastHost">
+        <th mat-header-cell *matHeaderCellDef> Last Host</th>
+        <td mat-cell *matCellDef="let r "> {{r.lastHost}} </td>
+      </ng-container>
+      <ng-container matColumnDef="broadcastAddress">
+        <th mat-header-cell *matHeaderCellDef> Broadcast Address</th>
+        <td mat-cell *matCellDef="let r "> {{ r.broadcastAddress}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+
+  <!-- add spinner while loading-->
+
+</ng-container>
+
+<ng-template #loading>
+  <div *ngIf="submitted">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
 

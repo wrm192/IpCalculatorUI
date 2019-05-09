@@ -1,10 +1,14 @@
-<div>
-  <mat-toolbar>
-    <mat-toolbar-row class="menu-bar">
-      <button>About me</button>
-      <a [routerLink]="['ipCalc']">Ip Calculator</a>
-      <button>Interest Fact</button>
-    </mat-toolbar-row>
-  </mat-toolbar>
+<mat-toolbar>
+  <mat-toolbar-row fxLayout="row" fxLayoutGap="20px">
+      <div>
+        <a [routerLink]="['about-me']">About Me</a>
+      </div>
+      <div>
+        <a [routerLink]="['ipCalc']">Ip Calculator</a>
+      </div>
+      <div>
+        <a [routerLink]="['factoid']">Interesting Factoid</a>
+      </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-</div>

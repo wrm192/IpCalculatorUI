@@ -11,7 +11,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class IpListDisplayComponent implements OnInit {
 
-
+  submitted: boolean;
   displayedColumns: string[] = ['seq', 'wireAddress', 'firstHost', 'lastHost', 'broadcastAddress'];
   networkInfo$: Observable<CalcultedIpAddresses>;
   form: FormGroup;
@@ -21,11 +21,12 @@ export class IpListDisplayComponent implements OnInit {
       ipAddress: new FormControl('', [Validators.minLength(7), Validators.maxLength(15)]),
       suffix: new FormControl('', [Validators.required])
     });
+    this.submitted = false;
   }
 
   getNetworkData() {
     let ipAddress: string;
-
+    this.submitted = true;
     ipAddress = this.form.controls['ipAddress'].value;
     console.log(ipAddress);
 
