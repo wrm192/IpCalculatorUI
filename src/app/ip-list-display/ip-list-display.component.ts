@@ -7,7 +7,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-ip-list-display',
   templateUrl: './ip-list-display.component.html',
-  styleUrls: ['./ip-list-display.component.css']
+  styleUrls: ['./ip-list-display.component.scss']
 })
 export class IpListDisplayComponent implements OnInit {
 
